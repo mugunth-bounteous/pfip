@@ -1,24 +1,75 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import LogIn from "./pages/LogIn";
+import HomeTemplate from "./components/HomeTemplate";
+import FacultyClasses from "./pages/faculty/FacultyClasses";
+import { useRoutes } from "react-router-dom";
+import { createContext, useState } from "react";
+import UserContext from "./context/userContext";
+import { useEffect } from "react";
+import FacultyHomeTemplate from "./pages/faculty/FacultyHomeTemplate";
 
 function App() {
+  const [user, setUser] = useState({
+    token: "",
+    username: "",
+    typeId: 0,
+    type: "",
+    isLoggedIn: false,
+  });
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+  const getRoutes = (user) => {
+    let dataLog = window.localStorage.getItem("dataLog");
+    if (dataLog) {
+      let user = JSON.parse(dataLog);
+      switch (user.type) {
+        case "PARENT":
+          return [
+            { path: "/", element: <LogIn /> },
+            { path: "login", element: <LogIn /> },
+          ];
+        case "ADMIN":
+          return [
+            { path: "/", element: <LogIn /> },
+            { path: "login", element: <LogIn /> },
+          ];
+
+        case "FACULTY":
+          return [
+            // { path: "/", element: <LogIn /> },
+            // { path: "login", element: <LogIn /> },
+            {
+              element: <FacultyHomeTemplate />,
+              children: [
+                { path: "home", element: <FacultyClasses /> },
+                { path: "/", element: <FacultyClasses /> },
+                { path: "/login", element: <FacultyClasses /> },
+              ],
+            },
+          ];
+
+        default:
+          return [
+            { path: "/", element: <LogIn /> },
+            { path: "login", element: <LogIn /> },
+          ];
+          break;
+      }
+    } else {
+      return [
+        { path: "/", element: <LogIn /> },
+        { path: "login", element: <LogIn /> },
+      ];
+    }
+  };
+
+  let routes = getRoutes(user);
+  let ret = useRoutes(routes);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={{ user, setUser }}>{ret}</UserContext.Provider>
   );
 }
 
