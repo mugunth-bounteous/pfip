@@ -6,14 +6,13 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./LogIn.css";
 import { Button } from "@mui/material";
-import UserContext from "../context/userContext";
 import backendUrl from "../constants/backendUrl";
 
 const Login = () => {
   const navigate = useNavigate();
   const [details, setDetails] = useState({ username: 0, password: "" });
   const { enqueueSnackbar } = useSnackbar();
-  const value = useContext(UserContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post(`${backendUrl}/api/auth/login`, details).then((res) => {
@@ -25,14 +24,6 @@ const Login = () => {
         typeId: res.data.data.typeId,
         type: res.data.data.type,
       }))
-      value.setUser({
-        ...value.user,
-        isLoggedIn: true,
-        token: res.data.data.token,
-        username: res.data.data.username,
-        typeId: res.data.data.typeId,
-        type: res.data.data.type,
-      });
       navigate("/home");
     });
     // value.setUser({ ...value.user, isLoggedIn: true, type: "FACULTY" });

@@ -2,13 +2,15 @@ import { Button, Card, CardActions, CardContent, CardHeader, CardMedia } from '@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const SquareTile = ( props ) => {
+const SquareTile = ( {courseId,name} ) => {
   return (
     <div>
         <Card sx={
           {height:150,width:150,alignItems:'center',justifyContent:'center',display:'flex'}
         }>
-            <CardContent sx={{fontWeight:'bold'}}>Course1</CardContent>
+            <CardContent sx={{fontWeight:'bold'}}>
+              {name}
+            </CardContent>
         </Card>
     </div>
   )

@@ -1,6 +1,6 @@
 package com.pfip.backend.dto
 
-data class TokenData(
+public data class TokenData(
     val username: String,
     val type: AccountType,
     val typeId: Int

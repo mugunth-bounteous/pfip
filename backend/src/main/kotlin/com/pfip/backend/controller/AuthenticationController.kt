@@ -21,7 +21,7 @@ class AuthenticationController(
         return authService.login(req);
     }
 
-    @PostMapping("/create-user")
+    @PostMapping("/createUser")
     fun createUser(@RequestBody req: CreateUserDto): ResponseEntity<Any?>{
         return authService.createUser(req)
     }

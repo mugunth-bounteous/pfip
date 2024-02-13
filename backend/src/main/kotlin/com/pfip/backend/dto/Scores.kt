@@ -4,7 +4,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Id
 
 
-data class Scores(
+public data class Scores(
     val studentId: Int,
     val score: Double
 )

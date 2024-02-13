@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 // add method to find assignments to a particular student and his scores in a course
 @Service
-class AssignmentService(
+public class AssignmentService(
     private val courseRepository: CourseRepository,
     private val assignmentRepository: AssignmentRepository,
     private val parentRepository: ParentRepository

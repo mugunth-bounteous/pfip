@@ -14,7 +14,7 @@ class TestController(
     private val tokenService: TokenService,
     private val testService: TestService
 ) {
-    @PostMapping("/create-test")
+    @PostMapping("/createTest")
     fun CreateTest(@RequestHeader(name = "Authorization") authorizationHeader: String,@RequestBody req: CreateTestDto): ResponseEntity<Any?>?{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret);
@@ -24,7 +24,7 @@ class TestController(
         return testService.createTest(typeId, req.courseId, req.testName, data.type==AccountType.ADMIN)
     }
 
-    @PostMapping("/add-test-scores")
+    @PostMapping("/addTestScores")
     fun AddTestScores(@RequestHeader(name = "Authorization") authorizationHeader: String, @RequestBody req: AddScoresToTestDto): ResponseEntity<Any?>?{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret);
@@ -34,7 +34,7 @@ class TestController(
         return testService.addTestScores(typeId, req, isAdmin = type==AccountType.ADMIN)
     }
 
-    @PostMapping("/course-tests")
+    @PostMapping("/courseTests")
     fun getTestsByCourseId(@RequestHeader(name = "Authorization") authorizationHeader: String, @RequestBody req: CourseDto): ResponseEntity<Any?>?{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret);
@@ -43,7 +43,7 @@ class TestController(
         val typeId=data.typeId
         return testService.findTestsByCourseId(typeId, req, type)
     }
-    @PostMapping("/student-test-scores")
+    @PostMapping("/studentTestScores")
     fun getStudentScoresOfATest(@RequestHeader(name = "Authorization") authorizationHeader: String, @RequestBody req: TestStudentScore): ResponseEntity<Any?>?{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret);
@@ -53,7 +53,7 @@ class TestController(
         return testService.studentScoresOfATest(typeId ,req ,type)
     }
 
-    @PostMapping("/get-student-test")
+    @PostMapping("/getStudentTest")
     fun getTestsByStudentId(@RequestHeader(name = "Authorization") authorizationHeader: String, @RequestBody req: CourseAndStudent): ResponseEntity<Any?>?{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret);

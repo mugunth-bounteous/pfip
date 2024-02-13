@@ -4,7 +4,7 @@ import com.pfip.backend.dto.Scores
 import jakarta.persistence.*
 
 @Entity
-class Assignment {
+public class Assignment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

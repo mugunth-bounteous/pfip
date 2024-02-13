@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 @Repository
-interface StudentRepository: JpaRepository<Student, String> {
+public interface StudentRepository: JpaRepository<Student, String> {
 
     @Query("from Student where parentId=?1")
     fun fetchByParentId(parentId:Int):Student?

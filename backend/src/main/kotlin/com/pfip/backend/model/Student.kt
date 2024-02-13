@@ -3,7 +3,7 @@ package com.pfip.backend.model
 import jakarta.persistence.*
 
 @Entity
-class Student {
+public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     var id: Int? = null

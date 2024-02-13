@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service
 import kotlin.jvm.optionals.getOrNull
 
 @Service
-class AuthService(
+public class AuthService(
     private val passwordService: PasswordService,
     private val tokenService: TokenService,
     private val accountRepository: AccountRepository

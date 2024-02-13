@@ -4,24 +4,25 @@ import LogIn from "./pages/LogIn";
 import HomeTemplate from "./components/HomeTemplate";
 import FacultyClasses from "./pages/faculty/FacultyClasses";
 import { useRoutes } from "react-router-dom";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import UserContext from "./context/userContext";
 import { useEffect } from "react";
 import FacultyHomeTemplate from "./pages/faculty/FacultyHomeTemplate";
+import FacultyHome from "./pages/faculty/FacultyHome";
 
 function App() {
-  const [user, setUser] = useState({
-    token: "",
-    username: "",
-    typeId: 0,
-    type: "",
-    isLoggedIn: false,
-  });
+  // const [user, setUser] = useState({
+  //   token: "",
+  //   username: "",
+  //   typeId: 0,
+  //   type: "",
+  //   isLoggedIn: false,
+  // });
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-  const getRoutes = (user) => {
+  // useEffect(() => {
+  //   console.log(user);
+  // }, [user]);
+  const getRoutes = () => {
     let dataLog = window.localStorage.getItem("dataLog");
     if (dataLog) {
       let user = JSON.parse(dataLog);
@@ -39,14 +40,12 @@ function App() {
 
         case "FACULTY":
           return [
-            // { path: "/", element: <LogIn /> },
-            // { path: "login", element: <LogIn /> },
             {
               element: <FacultyHomeTemplate />,
               children: [
-                { path: "home", element: <FacultyClasses /> },
-                { path: "/", element: <FacultyClasses /> },
-                { path: "/login", element: <FacultyClasses /> },
+                { path: "home", element: <FacultyHome /> },
+                { path: "/", element: <FacultyHome /> },
+                { path: "/login", element: <FacultyHome /> },
               ],
             },
           ];
@@ -66,10 +65,10 @@ function App() {
     }
   };
 
-  let routes = getRoutes(user);
+  let routes = getRoutes();
   let ret = useRoutes(routes);
   return (
-    <UserContext.Provider value={{ user, setUser }}>{ret}</UserContext.Provider>
+   ret
   );
 }
 

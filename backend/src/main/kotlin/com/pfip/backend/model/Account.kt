@@ -5,7 +5,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Id
 
 @Entity
-class Account {
+public class Account {
     @Id
     var username: String? = null
     var password: String? = null

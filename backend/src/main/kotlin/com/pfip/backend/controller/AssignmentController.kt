@@ -21,7 +21,7 @@ class AssignmentController(
     // add method to find assignments to a particular student and his scores in a course
     // add method to find assignment wrt course
 
-    @PostMapping("/add-assignment")
+    @PostMapping("/addAssignment")
     fun AddAssignment(@RequestHeader(name = "Authorization") authorizationHeader: String,@RequestBody req:CreateAssignmentDto): ResponseEntity<Any?>{
         // the course id and assignment name will be given from frontend
         val ret = authorizationHeader.substring(7)
@@ -32,7 +32,7 @@ class AssignmentController(
         return assignmentService.createAssignment(typeId= typeId, courseId = req.courseId, assignmentName = req.assignmentName, isAdmin = type==AccountType.ADMIN )
     }
 
-    @PostMapping("/add-assignment-score")
+    @PostMapping("/addAssignmentScore")
     fun AddAssignmentScore(@RequestHeader(name = "Authorization") authorizationHeader: String,@RequestBody req: AddScoresToAssignmentDto): ResponseEntity<Any?>{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret);
@@ -42,7 +42,7 @@ class AssignmentController(
         return assignmentService.addScoresToAnAssignment(typeId,req, isAdmin = type==AccountType.ADMIN)
     }
 
-    @PostMapping("/find-student-assignment")
+    @PostMapping("/findStudentAssignment")
     fun findAssignmentByStudent(@RequestHeader(name = "Authorization") authorizationHeader: String ,@RequestBody req: CourseAndStudent): ResponseEntity<Any?>{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret);
@@ -52,7 +52,7 @@ class AssignmentController(
         return assignmentService.findAssignmentByStudentId(typeId,req, type)
     }
 
-    @PostMapping("/assignment-score")
+    @PostMapping("/assignmentScore")
     fun studentAssignmentScore(@RequestHeader(name = "Authorization") authorizationHeader: String ,@RequestBody req: AssignmentStudentScore): ResponseEntity<Any?>{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret);
@@ -62,7 +62,7 @@ class AssignmentController(
         return assignmentService.studentScoresOfAnAssignment(typeId,req, type)
     }
 
-    @PostMapping("/assignment-of-course")
+    @PostMapping("/assignmentOfCourse")
     fun findAssignmentByCourse(@RequestHeader(name = "Authorization") authorizationHeader: String ,@RequestBody req: CourseDto): ResponseEntity<Any?>{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret);

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CourseRepository: JpaRepository<Course, String> {
+public interface CourseRepository: JpaRepository<Course, String> {
 
     @Query("from Course where id=?1")
     fun fetchCourseByStudentId(id:Int?): List<Course>?

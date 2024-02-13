@@ -20,16 +20,18 @@ import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import DrawerProfile from "../../components/DrawerProfile";
+import UserContext from "../../context/userContext";
+import { useContext } from "react";
 
 const drawerWidth = 200;
 
 const FacultyHomeTemplate = () => {
   const [dataLog, setDataLog] = useState({});
   useEffect(() => {
-    console.log("Inside faculty home");
     let temp = JSON.parse(window.localStorage.getItem("dataLog"));
-    console.log(temp);
     setDataLog(temp);
+    console.log("dataLog in FacultyHomeTemplate : " , temp)
+    // contextdata.setUser(temp)
   }, []);
   const navigate = useNavigate();
   return (
@@ -83,6 +85,9 @@ const FacultyHomeTemplate = () => {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
+        <UserContext.Provider value={{ dataLog }}>
+          <Outlet />
+        </UserContext.Provider>
       </Box>
     </Box>
   );

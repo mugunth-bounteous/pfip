@@ -13,7 +13,7 @@ import javax.crypto.spec.SecretKeySpec
 
 
 @Configuration
-class JwtEncodingConfig(
+public class JwtEncodingConfig(
     @Value("somerandomkeywhichislongenoughtoalignwiththejwtspecification")
     private val jwtKey: String,
 ) {

@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
-class ParentService(
+public class ParentService(
     private val courseRepository: CourseRepository,
     private val parentRepository: ParentRepository,
     private val studentRepository: StudentRepository

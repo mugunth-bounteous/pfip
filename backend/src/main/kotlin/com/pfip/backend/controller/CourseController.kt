@@ -16,8 +16,8 @@ class CourseController(
     private val courseService: CourseService
 ) {
 
-    @PostMapping("/create-course")
-    fun createCourse(@RequestHeader(name = "Authorization") authorizationHeader: String,@RequestBody req:CreateCourseDto): ResponseEntity<Any?>{
+    @PostMapping("/createCourse")
+    fun createCourse(@RequestBody req:CreateCourseDto, @RequestHeader(name = "Authorization") authorizationHeader: String): ResponseEntity<Any?>{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret);
         val username = data!!.username
@@ -26,8 +26,8 @@ class CourseController(
         return courseService.createCourse(typeId = typeId,req = req ,type = type)
     }
 
-    @GetMapping("/get-course-by-student")
-    fun getCoursesByStudentId(@RequestHeader(name = "Authorization") authorizationHeader: String,@RequestBody req:StudentDto): ResponseEntity<Any?>{
+    @GetMapping("/getCourseByStudent")
+    fun getCoursesByStudentId(@RequestBody req:StudentDto, @RequestHeader(name = "Authorization") authorizationHeader: String): ResponseEntity<Any?>{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret);
         val username = data!!.username
@@ -35,7 +35,7 @@ class CourseController(
         val typeId=data.typeId
         return courseService.findCoursesByStudentId(typeId = typeId, studentDto = req)
     }
-    @GetMapping("/get-course-by-faculty")
+    @GetMapping("/getCourseByFaculty")
     fun getCoursesByFaculty(@RequestHeader(name = "Authorization") authorizationHeader: String): ResponseEntity<Any?>{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret);

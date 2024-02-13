@@ -3,12 +3,13 @@ package com.pfip.backend.service
 import com.pfip.backend.dto.*
 import com.pfip.backend.model.Course
 import com.pfip.backend.repository.CourseRepository
+import org.springframework.context.annotation.Bean
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
-class CourseService(
+public class CourseService(
     private val courseRepository: CourseRepository,
 
 ) {
@@ -32,10 +33,10 @@ class CourseService(
 
     fun createCourse(typeId:Int,req:CreateCourseDto,type:AccountType):ResponseEntity<Any?>{
         if(type==AccountType.ADMIN){
-            val course:Course = Course()
-            course.courseName=req.courseName
-            course.facultyId=req.facultyId
-            course.listOfStudents= mutableListOf()
+            var course = Course()
+            course.courseName = req.courseName
+            course.facultyId = req.facultyId
+            course.listOfStudents = mutableListOf()
             val ret=courseRepository.save(course)
            return ResponseEntity<Any?>(ResponseMessage(status = "SUCCESS", data = ret),HttpStatus.valueOf(200))
         }

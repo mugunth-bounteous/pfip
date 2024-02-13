@@ -1,6 +1,6 @@
 package com.pfip.backend.dto
 
-enum class AccountType {
+public enum class AccountType {
     ADMIN,
     FACULTY,
     PARENT,

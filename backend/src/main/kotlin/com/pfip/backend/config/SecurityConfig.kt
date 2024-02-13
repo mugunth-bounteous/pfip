@@ -1,6 +1,8 @@
 package com.pfip.backend.config
 
+
 import com.pfip.backend.service.TokenService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -20,7 +22,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
 @Configuration
 @EnableWebSecurity
-class SecurityConfig (
+public class SecurityConfig (
+    @Autowired
     private val tokenService: TokenService,
 ) {
 
@@ -29,14 +32,15 @@ class SecurityConfig (
         // Define public and private routes
         http.authorizeHttpRequests{auth -> auth
             .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+            .requestMatchers(HttpMethod.POST, "/api/course/createCourse").permitAll()
             .requestMatchers("/api/assignment/**").authenticated()
             .requestMatchers("/api/course/**").authenticated()
-            .requestMatchers(HttpMethod.POST, "/api/course/create-course").permitAll()
             .requestMatchers("/api/test/**").authenticated()
             .requestMatchers("/api/parent/**").authenticated()
             .anyRequest().permitAll()
         }
 
+//        println("In between")
 
 
 

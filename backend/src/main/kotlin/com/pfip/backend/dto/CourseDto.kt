@@ -1,5 +1,5 @@
 package com.pfip.backend.dto
 
-data class CourseDto(
+public data class CourseDto(
     val courseId: Int
 )

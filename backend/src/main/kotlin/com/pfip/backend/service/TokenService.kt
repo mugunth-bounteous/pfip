@@ -3,6 +3,7 @@ package com.pfip.backend.service
 import com.pfip.backend.dto.AccountType
 import com.pfip.backend.dto.TokenData
 import com.pfip.backend.model.Account
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.oauth2.jwt.*
 import org.springframework.stereotype.Service
 import java.lang.Exception
@@ -10,7 +11,7 @@ import java.time.Instant
 import java.time.temporal.ChronoUnit
 
 @Service
-class TokenService(
+public class TokenService(
     private val jwtDecoder: JwtDecoder,
     private val jwtEncoder: JwtEncoder
 ) {
@@ -34,10 +35,8 @@ class TokenService(
             val username = jwt.claims["username"] as String
             val type= jwt.claims["type"] as String
             val ret=AccountType.valueOf(type)
-            val typeId=jwt.claims["typeId"] as Int
-//            val fetchAccountRepoService= FetchAccountRepoService(accountRepo)
-//            fetchAccountRepoService.isUsernamePresent(username)
-            TokenData(username,ret,typeId)
+            val typeId=jwt.claims["typeId"] as Long
+            TokenData(username,ret,typeId.toInt())
         } catch (e: Exception) {
             null
         }

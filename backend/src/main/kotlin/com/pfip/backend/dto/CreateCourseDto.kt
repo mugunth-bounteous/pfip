@@ -1,6 +1,6 @@
 package com.pfip.backend.dto
 
-data class CreateCourseDto(
+public data class CreateCourseDto(
     val courseName:String,
     val facultyId:Int
 )

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 
 
 @Service
-class TestService(
+public class TestService(
     private val testRepository: TestRepository,
     private val courseRepository: CourseRepository,
     private val parentRepository: ParentRepository

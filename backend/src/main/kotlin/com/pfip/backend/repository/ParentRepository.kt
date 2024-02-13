@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface ParentRepository: JpaRepository<Parent, String> {
+public interface ParentRepository: JpaRepository<Parent, String> {
 }

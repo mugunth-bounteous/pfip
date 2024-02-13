@@ -4,7 +4,7 @@ import com.pfip.backend.dto.Scores
 import jakarta.persistence.*
 
 @Entity
-class Test {
+public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null;

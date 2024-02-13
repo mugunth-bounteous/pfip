@@ -1,12 +1,12 @@
 package com.pfip.backend.model
 
-import jakarta.persistence.ElementCollection
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
+import jakarta.persistence.*
+import org.springframework.boot.context.properties.bind.DefaultValue
 
 @Entity
-class Course {
+public class Course {
     @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     var id: Int? = null;
     var courseName: String? = null;
     var facultyId: Int? = null;

@@ -14,7 +14,7 @@ class ParentController(
     private val tokenService: TokenService,
     private val parentService: ParentService
 ) {
-    @PostMapping("/create-parent")
+    @PostMapping("/createParent")
     fun createParent(@RequestHeader(name = "Authorization") authorizationHeader: String,@RequestBody req:CreateParent): ResponseEntity<Any?>{
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret)
@@ -25,7 +25,7 @@ class ParentController(
 
     }
 
-    @GetMapping("/get-student-details")
+    @GetMapping("/getStudentDetails")
     fun getStudentDetails(@RequestHeader(name = "Authorization") authorizationHeader: String,){
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret)
@@ -34,7 +34,7 @@ class ParentController(
         val typeId=data.typeId
     }
 
-    @GetMapping("/get-details")
+    @GetMapping("/getDetails")
     fun getSelfDetails(@RequestHeader(name = "Authorization") authorizationHeader: String,){
         val ret = authorizationHeader.substring(7)
         val data = tokenService.parseToken(ret)
